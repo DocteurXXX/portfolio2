@@ -9,11 +9,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
                 <th>Nom</th>
                 <th>Prenom</th>
+                <th>Email</th>
                 <th>Phone</th>
                 <th>Adresse</th>
                 <th>Zipcode</th>
@@ -21,6 +19,7 @@
                 <th>DateNaissance</th>
                 <th>Photo</th>
                 <th>APropos</th>
+                <th>Password</th>
                 <th>Role</th>
                 <th>actions</th>
             </tr>
@@ -29,11 +28,9 @@
         {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.Nom }}</td>
                 <td>{{ user.Prenom }}</td>
+                <td>{{ user.Email }}</td>
                 <td>{{ user.Phone }}</td>
                 <td>{{ user.Adresse }}</td>
                 <td>{{ user.Zipcode }}</td>
@@ -41,6 +38,8 @@
                 <td>{{ user.DateNaissance ? user.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.Photo }}</td>
                 <td>{{ user.APropos }}</td>
+                <td>{{ user.Password }}</td>
+                <td>{{ user.Role }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
@@ -48,7 +47,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="15">no records found</td>
+                <td colspan="14">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -1,0 +1,48 @@
+<style>
+.navbar
+{
+    margin-top: 2%;
+    align-content: c;
+    margin-left: left;
+    margin-right: auto;
+
+
+}
+
+    .navbar
+    {
+        background: #C9C9C9;
+    }
+
+    .nav-link, .navbar-brand
+    {
+        color: black;
+    }
+
+</style>
+
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{{ path('accueil',{'id': user.id})  }}">Menu</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('formationpage',{'id': user.id})  }}">Formations<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('experiencepage',{'id': user.id})  }}">Expériences</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('competencepage',{'id': user.id})  }}">Compétences</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('projetpage',{'id': user.id})  }}">Projets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('loisirspage',{'id': user.id})  }}">Loisirs</a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -25,7 +25,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private $roles = ['ROLE_USER'];
 
     /**
      * @var string The hashed password
@@ -79,6 +79,31 @@ class User implements UserInterface
      */
     private $aPropos;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Titre;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Langues", mappedBy="user")
+     */
+    private $langues;
+
+    /**
+     * @return mixed
+     */
+    public function getLangues()
+    {
+        return $this->langues;
+    }
+
+    /**
+     * @param mixed $langues
+     */
+    public function setLangues($langues): void
+    {
+        $this->langues = $langues;
+    }
 
 
     public function getId(): ?int
@@ -267,5 +292,17 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->Titre;
+    }
+
+    public function setTitre(string $Titre): self
+    {
+        $this->Titre = $Titre;
+
+        return $this;
     }
 }

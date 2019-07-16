@@ -24,6 +24,7 @@ class UserType extends AbstractType
             ->add('dateNaissance')
             ->add('photo')
             ->add('aPropos')
+            ->add('titre')
         ;
     }
 
