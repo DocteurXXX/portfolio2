@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations index{% endblock %}
+
+{% block body %}
+    <h1>Formations index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Ecole</th>
+                <th>Lieu</th>
+                <th>DateStart</th>
+                <th>DateEnd</th>
+                <th>Diplome</th>
+                <th>Logo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td>{{ formation.id }}</td>
+                <td>{{ formation.Titre }}</td>
+                <td>{{ formation.Ecole }}</td>
+                <td>{{ formation.Lieu }}</td>
+                <td>{{ formation.DateStart ? formation.DateStart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ formation.DateEnd ? formation.DateEnd|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ formation.Diplome }}</td>
+                <td>{{ formation.Logo }}</td>
+                <td>
+                    <a href="{{ path('formations_show', {'id': formation.id}) }}">show</a>
+                    <a href="{{ path('formations_edit', {'id': formation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('formations_new') }}">Create new</a>
+{% endblock %}

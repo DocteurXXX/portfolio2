@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liens index{% endblock %}
+
+{% block body %}
+    <h1>Liens index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Lien</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lien in liens %}
+            <tr>
+                <td>{{ lien.id }}</td>
+                <td>{{ lien.Nom }}</td>
+                <td>{{ lien.Lien }}</td>
+                <td>
+                    <a href="{{ path('liens_show', {'id': lien.id}) }}">show</a>
+                    <a href="{{ path('liens_edit', {'id': lien.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('liens_new') }}">Create new</a>
+{% endblock %}

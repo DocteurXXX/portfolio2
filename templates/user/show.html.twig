@@ -41,11 +41,11 @@
             </tr>
             <tr>
                 <th>DateNaissance</th>
-                <td>{{ user.DateNaissance ? user.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.DateNaissance ? user.DateNaissance|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>Photo</th>
-                <td>{{ user.Photo }}</td>
+                <td><img src="{{ asset('uploads/'~ user.Photo) }}"</td>
             </tr>
             <tr>
                 <th>APropos</th>
