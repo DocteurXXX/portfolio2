@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -17,54 +18,68 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $Nom;
+    private $email;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
+
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Prenom;
+    private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Email;
+    private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Phone;
+    private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Adresse;
+    private $adresse;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $Zipcode;
+    private $zipcode;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Ville;
+    private $ville;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $DateNaissance;
+    private $dateNaissance;
 
     /**
      * @ORM\Column(type="string", length=500)
      */
-    private $Photo;
+    private $photo;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $APropos;
+    private $aPropos;
+
+
 
     public function getId(): ?int
     {
@@ -73,121 +88,184 @@ class User
 
     public function getNom(): ?string
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
-    public function setNom(string $Nom): self
+    public function setNom(string $nom): self
     {
-        $this->Nom = $Nom;
+        $this->nom = $nom;
 
         return $this;
     }
 
     public function getPrenom(): ?string
     {
-        return $this->Prenom;
+        return $this->prenom;
     }
 
-    public function setPrenom(string $Prenom): self
+    public function setPrenom(string $prenom): self
     {
-        $this->Prenom = $Prenom;
+        $this->prenom = $prenom;
 
         return $this;
     }
 
     public function getEmail(): ?string
     {
-        return $this->Email;
+        return $this->email;
     }
 
-    public function setEmail(string $Email): self
+    public function setEmail(string $email): self
     {
-        $this->Email = $Email;
+        $this->email = $email;
 
         return $this;
     }
 
     public function getPhone(): ?string
     {
-        return $this->Phone;
+        return $this->phone;
     }
 
-    public function setPhone(string $Phone): self
+    public function setPhone(string $phone): self
     {
-        $this->Phone = $Phone;
+        $this->phone = $phone;
 
         return $this;
     }
 
     public function getAdresse(): ?string
     {
-        return $this->Adresse;
+        return $this->adresse;
     }
 
-    public function setAdresse(string $Adresse): self
+    public function setAdresse(string $adresse): self
     {
-        $this->Adresse = $Adresse;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
     public function getZipcode(): ?int
     {
-        return $this->Zipcode;
+        return $this->zipcode;
     }
 
-    public function setZipcode(int $Zipcode): self
+    public function setZipcode(int $zipcode): self
     {
-        $this->Zipcode = $Zipcode;
+        $this->zipcode = $zipcode;
 
         return $this;
     }
 
     public function getVille(): ?string
     {
-        return $this->Ville;
+        return $this->ville;
     }
 
-    public function setVille(string $Ville): self
+    public function setVille(string $ville): self
     {
-        $this->Ville = $Ville;
+        $this->ville = $ville;
 
         return $this;
     }
 
     public function getDateNaissance(): ?\DateTimeInterface
     {
-        return $this->DateNaissance;
+        return $this->dateNaissance;
     }
 
-    public function setDateNaissance(\DateTimeInterface $DateNaissance): self
+    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
     {
-        $this->DateNaissance = $DateNaissance;
+        $this->dateNaissance = $dateNaissance;
 
         return $this;
     }
 
     public function getPhoto(): ?string
     {
-        return $this->Photo;
+        return $this->photo;
     }
 
-    public function setPhoto(string $Photo): self
+    public function setPhoto(string $photo): self
     {
-        $this->Photo = $Photo;
+        $this->photo = $photo;
 
         return $this;
     }
 
     public function getAPropos(): ?string
     {
-        return $this->APropos;
+        return $this->aPropos;
     }
 
-    public function setAPropos(string $APropos): self
+    public function setAPropos(string $aPropos): self
     {
-        $this->APropos = $APropos;
+        $this->aPropos = $aPropos;
 
         return $this;
+    }
+
+
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

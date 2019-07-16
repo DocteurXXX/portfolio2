@@ -12,16 +12,24 @@
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
                 <th>Nom</th>
                 <td>{{ user.Nom }}</td>
             </tr>
             <tr>
                 <th>Prenom</th>
                 <td>{{ user.Prenom }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.Email }}</td>
             </tr>
             <tr>
                 <th>Phone</th>
@@ -41,16 +49,17 @@
             </tr>
             <tr>
                 <th>DateNaissance</th>
-                <td>{{ user.DateNaissance ? user.DateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ user.DateNaissance ? user.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Photo</th>
-                <td><img src="{{ asset('uploads/'~ user.Photo) }}"</td>
+                <td>{{ user.Photo }}</td>
             </tr>
             <tr>
                 <th>APropos</th>
                 <td>{{ user.APropos }}</td>
             </tr>
+
         </tbody>
     </table>
 
