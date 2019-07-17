@@ -79,6 +79,10 @@
                     <p style="text-align: justify">{{ user.zipcode }} {{ user.ville }}</p>
                     <h3>Date de naissance :</h3>
                     <p>{{ user.dateNaissance | date('d/m/Y')}}</p>
+                    <h3>Liens :</h3>
+                    {% for liens in user.liens %}
+                        <a style="margin-left: 2%; color: black;" target="_blank" href="{{ liens.Lien }}">{{ liens.Nom }}</a>
+                    {% endfor %}
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-6 col-lg-9 col-xl-9" style="background-color: white">

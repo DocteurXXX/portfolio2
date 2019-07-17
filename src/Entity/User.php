@@ -160,6 +160,27 @@ class User implements UserInterface
     /**
      * @return mixed
      */
+    public function getLiens()
+    {
+        return $this->liens;
+    }
+
+    /**
+     * @param mixed $liens
+     */
+    public function setLiens($liens): void
+    {
+        $this->liens = $liens;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Liens", mappedBy="user")
+     */
+    private $liens;
+
+    /**
+     * @return mixed
+     */
     public function getCompetences()
     {
         return $this->competences;
