@@ -8,14 +8,98 @@
     </style>
 
 
-        <h2>Compétences :</h2>
 
-        <h3>Langues :</h3>
-        {% for langues in user.langues %}
-            <p>{{ langues.langues }}  -  Niveau : {{ langues.notion }}</p>
+{#        <h3>Langues :</h3>#}
+{#        {% for langues in user.langues %}#}
+{#            <p>{{ langues.langues }}  -  Niveau : {{ langues.notion }}</p>#}
+{#        {% endfor %}#}
+
+
+
+    <style>
+        .row.competence
+        {
+            border-style: solid;
+            border-color: cadetblue;
+            border-radius: 10px;
+            border-width: thin;
+            margin-bottom: 2%;
+            width: 90%;
+            float:left;
+            margin-left: 3%;
+            margin-right: 3%;
+            /*align-content: center;*/
+            /*margin-right: auto;*/
+            /*margin-left: auto;*/
+        }
+
+        .competence p
+        {
+            margin-left: 2%;
+            margin-top: 2%;
+
+        }
+
+        .logocompetence
+        {
+            height: 50px;
+            max-height: 100%;
+            max-width: 100%;
+            min-height: 80%;
+            min-width: 90%;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .titre
+        {
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+
+        .denom
+        {
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+
+            vertical-align: middle;
+        }
+
+
+    </style>
+
+    <div class="row">
+    <div class="col">
+        <h2 class="titre">Compétences :</h2>
+
+        {% for competences in user.competences %}
+                    <div class="row competence col-3">
+                        <div class="col-7">
+                            <p class="denom">{{ competences.Type }}</p>
+    {#                        <p><span class="denom">Description</span> : {{ competences.Description }}</p>#}
+                        </div>
+                        <div class="col-5">
+                            <img class="logocompetence" src="{{ asset('uploads/'~ competences.Image )}}">
+                        </div>
+                    </div>
         {% endfor %}
+    </div>
+    </div>
 
-
+    <div class="row">
+    <div class="col">
+        <h2 class="titre">Langues :</h2>
+        {% for langues in user.langues %}
+            <div class="row competence col-5">
+                <div class="col-12">
+                    <p>{{ langues.langues }}  -  Niveau : {{ langues.notion }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
 
 
 {% endblock %}
