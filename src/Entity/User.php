@@ -90,6 +90,91 @@ class User implements UserInterface
     private $langues;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Competences", mappedBy="user")
+     */
+    private $competences;
+
+    /**
+     * @return mixed
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+
+    /**
+     * @param mixed $experiences
+     */
+    public function setExperiences($experiences): void
+    {
+        $this->experiences = $experiences;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Experiences", mappedBy="user")
+     */
+    private $experiences;
+
+    /**
+     * @return mixed
+     */
+    public function getLoisirs()
+    {
+        return $this->loisirs;
+    }
+
+    /**
+     * @param mixed $loisirs
+     */
+    public function setLoisirs($loisirs): void
+    {
+        $this->loisirs = $loisirs;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Loisirs", mappedBy="user")
+     */
+    private $loisirs;
+
+    /**
+     * @return mixed
+     */
+    public function getFormations()
+    {
+        return $this->formations;
+    }
+
+    /**
+     * @param mixed $formations
+     */
+    public function setFormations($formations): void
+    {
+        $this->formations = $formations;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Formations", mappedBy="user")
+     */
+    private $formations;
+
+    /**
+     * @return mixed
+     */
+    public function getCompetences()
+    {
+        return $this->competences;
+    }
+
+    /**
+     * @param mixed $competences
+     */
+    public function setCompetences($competences): void
+    {
+        $this->competences = $competences;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getLangues()

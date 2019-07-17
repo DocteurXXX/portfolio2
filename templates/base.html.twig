@@ -11,63 +11,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
     </head>
-    <style>
-        .container-fluid
-        {
-            background: #C9C9C9;
-            width: 80%;
-            align-content: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
 
-        img
-        {
-            margin-top: 2%;
-        }
-
-    </style>
 
     <body>
 
 
 
-    <div class="container-fluid">
-        <div class="row col-12">
-            <div class="row">
-
-                <div class="col-12">
-                    <h1>{{ user.prenom }} {{ user.nom }} </h1>
-                </div>
-
-                <div class="col-12">
-                    <h2>{{ user.titre }}</h2>
-                </div
-
-                <div class="col-12">
-                    {% include 'navbar.html.twig' %}
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                    <img src="{{ asset('uploads/'~ user.photo )}}" alt="" style="width: 100%">
-                    <h3>Email :</h3>
-                    <p>{{ user.email }}</p>
-                    <h3>Téléphone :</h3>
-                    <p>{{ user.phone }}</p>
-                    <h3>Adresse :</h3>
-                    <p style="text-align: justify">{{ user.adresse }}</p>
-                    <p style="text-align: justify">{{ user.zipcode }} {{ user.ville }}</p>
-                    <h3>Date de naissance :</h3>
-                    <p>{{ user.dateNaissance | date('d/m/Y')}}</p>
-                </div>
                 {% block body %}{% endblock %}
-            </div>
+
 
         {% block javascripts %}{% endblock %}
-        </div>
-    </div>
+
     </body>
 </html>

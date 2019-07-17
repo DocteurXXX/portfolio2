@@ -1,18 +1,67 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block title %}{{ user.prenom }} {{ user.nom }}{% endblock %}
 
 {% block body %}
     <style>
+    .row.formation
+        {
+            border-style: solid;
+            border-color: cadetblue;
+            border-radius: 10px;
+            border-width: thin;
+            margin-bottom: 2%;
+            width: 90%;
+            align-content: center;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+       .formation p
+       {
+            margin-left: 2%;
+            margin-top: 2%;
+        }
+
+        .logoformation
+        {
+            height: 100px;
+            max-height: 100%;
+            max-width: 100%;
+            min-height: 80%;
+            min-width: 80%;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .titre
+        {
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+
+        .denom
+        {
+            font-weight: bold;
+        }
 
     </style>
 
+        <h2 class="titre">Formations :</h2>
 
-
-    <div class="col-12 col-sm-12 col-md-6 col-lg-9 col-xl-9">
-        <h2>Formation :</h2>
-
-    </div>
+        {% for formations in user.formations %}
+            <div class="row formation">
+                <div class="col-9">
+                    <p><span class="denom">Titre</span> : {{ formations.titre }}</p>
+                    <p><span class="denom">Lieu</span> : {{ formations.ecole }} à {{ formations.lieu }}</p>
+                    <p><span class="denom">Année</span> : De {{ formations.datestart  | date('Y')  }} à {{ formations.dateEnd  | date('Y')  }}</p>
+                </div>
+                <div class="col-3">
+                    <img class="logoformation" src="{{ asset('uploads/'~ formations.logo )}}">
+                </div>
+            </div>
+        {% endfor %}
 
 
 
