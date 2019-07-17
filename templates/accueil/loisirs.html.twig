@@ -4,17 +4,76 @@
 
 {% block body %}
     <style>
+        .row.loisirs
+        {
+            border-style: solid;
+            border-color: cadetblue;
+            border-radius: 10px;
+            border-width: thin;
+            margin-bottom: 2%;
+            width: 90%;
+            float:left;
+            margin-left: 3%;
+            margin-right: 3%;
+            /*align-content: center;*/
+            /*margin-right: auto;*/
+            /*margin-left: auto;*/
+        }
+
+        .loisirs p
+        {
+            margin-left: 2%;
+            margin-top: 2%;
+
+        }
+
+        .logoloisirs
+        {
+            height: 100px;
+            max-height: 80%;
+            max-width: 100%;
+            min-height: 80%;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .titre
+        {
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+
+        .denom
+        {
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+
+            vertical-align: middle;
+        }
+
 
     </style>
 
+    <div class="row">
+        <div class="col">
+            <h2 class="titre">Loisirs :</h2>
 
-        <h2>Loisirs :</h2>
+            {% for loisirs in user.loisirs %}
+                <div class="row loisirs col-5">
+                    <div class="col-9">
+                        <p class="denom">{{ loisirs.Nom }}</p><br>
+                        <p>{{ loisirs.Description }}</p>
 
-        {% for loisirs in user.loisirs %}
-            <p>{{ loisirs.nom }} ({{ loisirs.description }})</p>
-        {% endfor %}
-
-
+                    </div>
+                    <div class="col-3">
+                        <img class="logoloisirs" src="{{ asset('uploads/'~ loisirs.Image )}}">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
 
 
